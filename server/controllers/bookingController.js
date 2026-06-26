@@ -46,7 +46,11 @@ exports.bookEvent = async (req, res) => {
 
         await OTP.deleteOne({ _id: validOTP._id }); // cleanup
 
-        res.status(201).json({ message: 'Booking request submitted', booking });
+        const fullBooking = await Booking.findById(booking._id)
+            .populate('eventId')
+            .populate('userId', 'name email');
+
+        res.status(201).json(fullBooking);
     } catch (error) {
         res.status(500).json({ message: 'Server Error', error: error.message });
     }
@@ -75,8 +79,11 @@ exports.confirmBooking = async (req, res) => {
         await event.save();
 
         // Send email on admin confirmation
-        await sendBookingEmail(booking.userId.email, booking.userId.name, booking.eventId.title);
-
+       await sendBookingEmail(
+    booking.userId.email,
+    booking.userId.name,
+    booking
+);
         res.json({ message: 'Booking confirmed successfully', booking });
     } catch (error) {
         res.status(500).json({ message: 'Server Error', error: error.message });

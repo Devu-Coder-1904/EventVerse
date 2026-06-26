@@ -53,15 +53,15 @@ const AdminDashboard = () => {
             setFormData({ title: '', description: '', date: '', location: '', category: '', totalSeats: '', ticketPrice: '', imageUrl: '' });
             fetchData();
         }
-        // } catch (error) {
-        //     alert(error.response?.data?.message || 'Error creating event');
-        // }
         catch (error) {
-    console.log(error.response);
-    console.log(error.response?.data);
-    alert(JSON.stringify(error.response?.data));
-}
-    };
+            alert(error.response?.data?.message || 'Error creating event');
+        }
+    //     catch (error) {
+    // console.log(error.response);
+    // console.log(error.response?.data);
+    // alert(JSON.stringify(error.response?.data));
+};
+    
 
     const handleDeleteEvent = async (id) => {
         if (window.confirm('Are you sure you want to delete this event?')) {

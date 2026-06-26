@@ -45,8 +45,11 @@ const EventDetail = () => {
                 setShowOTP(true);
                 setSuccessMsg('OTP sent to your email. Please verify to confirm booking.');
             } else {
-                await api.post('/booking', { eventId: event._id, otp });
-                setSuccessMsg('Booking requested! Awaiting admin confirmation.');
+                // await api.post('/booking', { eventId: event._id, otp });
+                // setSuccessMsg('Booking requested! Awaiting admin confirmation.');
+                const { data } = await api.post('/booking', { eventId: event._id, otp });
+
+                navigate('/ticket', { state: { booking: data } });
                 setShowOTP(false);
                 // Update local seats count dynamically after booking
                 setEvent({ ...event, availableSeats: event.availableSeats - 1 });

@@ -9,42 +9,52 @@ const transporter = nodemailer.createTransport({
     pass: process.env.EMAIL_PASS,
   },
 });
-
-const sendBookingEmail = async (email, name, eventTitle) => {
+const sendBookingEmail = async (email, name, booking) => {
     try {
-const mailOptions = {
-from: process.env.EMAIL_USER,
-to: email,
-subject: `Event Booking Confirmed: ${eventTitle}`,
-html: ` <div style="font-family:Arial,sans-serif;max-width:500px;margin:auto;padding:20px;border:1px solid #ddd;border-radius:10px"> <h2 style="text-align:center;color:#16a34a;">✅ Booking Confirmed</h2>
+        const downloadLink = `${process.env.CLIENT_URL}/ticket?bookingId=${booking._id}`;
 
-  <p>Hello <b>${name}</b>,</p>
+        const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: email,
+            subject: `🎫 Your Event Ticket - ${booking.eventId.title}`,
+            html: `
+            <div style="font-family:Arial;max-width:520px;margin:auto;padding:20px;border:1px solid #ddd;border-radius:12px">
 
-  <p>Your booking has been successfully confirmed for:</p>
+                <h2 style="color:#16a34a;text-align:center;">✅ Booking Confirmed</h2>
 
-  <div style="background:#f3f4f6;padding:15px;border-radius:8px;text-align:center;margin:20px 0;">
-    <h3 style="margin:0;color:#2563eb;">${eventTitle}</h3>
-  </div>
+                <p>Hello <b>${name}</b>,</p>
 
-  <p>We look forward to seeing you at the event.</p>
+                <p>Your ticket is ready 🎉</p>
 
-  <hr>
+                <div style="background:#f3f4f6;padding:15px;border-radius:10px;margin:20px 0">
 
-  <p style="font-size:12px;color:gray;text-align:center;">
-    Thank you for choosing Eventora 🎉
-  </p>
-</div>
+                    <h3>${booking.eventId.title}</h3>
+                    <p>📅 ${new Date(booking.eventId.date).toDateString()}</p>
+                    <p>📍 ${booking.eventId.location}</p>
+                    <p>🎟 Booking ID: ${booking._id}</p>
 
-`,
-};
+                </div>
+
+                <div style="text-align:center;margin:25px 0;">
+                    <a href="${downloadLink}" 
+                       style="background:#2563eb;color:white;padding:12px 18px;
+                       text-decoration:none;border-radius:8px;font-weight:bold;">
+                       📥 Download / View Ticket
+                    </a>
+                </div>
+
+                <p style="font-size:12px;color:gray;text-align:center;">
+                    Show this ticket at entry gate (QR included)
+                </p>
+
+            </div>
+            `
+        };
 
         await transporter.sendMail(mailOptions);
-        console.log(`Booking confirmation email sent to ${email} for event: ${eventTitle}`);
+    } catch (error) {
+        console.error(error);
     }
-    catch (error) {
-        console.error(`Error sending booking confirmation email to ${email}:`, error);
-        
-    }       
 };
 
 const sendOtpEmail = async (email, otp, type) => {
