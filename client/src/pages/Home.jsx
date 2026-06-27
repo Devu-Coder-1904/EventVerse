@@ -5,20 +5,28 @@ import { FaCalendarAlt, FaMapMarkerAlt, FaSearch, FaRegClock, FaTicketAlt, FaShi
 
 const Home = () => {
     const [events, setEvents] = useState([]);
-    const [search, setSearch] = useState('');
-    const [loading, setLoading] = useState(true);
+const [search, setSearch] = useState('');
+const [category, setCategory] = useState('');
+const [categories, setCategories] = useState([]);
+const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
             fetchEvents();
         }, 400); // 400ms debounce
         return () => clearTimeout(timeoutId);
-    }, [search]);
+    }, [search, category]);
 
     const fetchEvents = async () => {
         try {
-            const { data } = await api.get(`/event?search=${search}`);
+           const { data } = await api.get(
+    `/event?search=${search}&category=${category}`
+);
             setEvents(data);
+    const uniqueCategories = [...new Set(data.map(event => event.category))];
+setCategories(uniqueCategories);  
+
+
         } catch (error) {
             console.error('Error fetching events:', error);
         } finally {
@@ -51,6 +59,24 @@ const Home = () => {
                             onChange={(e) => setSearch(e.target.value)}
                         />
                     </div>
+                    <div className="mt-6 w-full max-w-sm">
+    <select
+    value={category}
+    onChange={(e) => setCategory(e.target.value)}
+    className="w-full bg-white text-gray-800 rounded-xl px-4 py-3 border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-black"
+>
+    <option value="">All Categories</option>
+
+    {categories.map((cat) => (
+        <option key={cat} value={cat}>
+            {cat}
+        </option>
+    ))}
+</select>
+
+
+
+  </div>
                 </div>
             </div>
 
@@ -91,20 +117,23 @@ const Home = () => {
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {events.map(event => (
-                        <div key={event._id} className="bg-white rounded-xl overflow-hidden shadow-md card-hover flex flex-col">
+                      <div
+    key={event._id}
+    className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col border border-gray-100"
+>
                             <div className="h-48 bg-gray-200 overflow-hidden relative">
                                 {event.imageUrl ? (
   <img
     src={event.imageUrl}
     alt={event.title}
-    className="w-full h-full object-cover"
+    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
   />
 ) : (
-                                    <div className="w-full h-full flex items-center justify-center bg-gray-200 text-gray-600 font-bold text-2xl">
-                                        {event.category || 'Event'}
-                                    </div>
+                                    <span className="inline-block bg-gray-100 text-gray-700 text-xs font-semibold px-3 py-1 rounded-full mb-3 w-fit">
+    {event.category}
+</span>
                                 )}
-                                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-bold shadow-sm">
+                               <div className="absolute top-4 right-4 bg-black text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
                                     {event.ticketPrice === 0 ? <span className="text-green-600">FREE</span> : <span className="text-gray-900">₹{event.ticketPrice}</span>}
                                 </div>
                             </div>
@@ -123,10 +152,10 @@ const Home = () => {
                                 </div>
                                 <div className="mt-auto">
                                     <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
-                                        <div className="bg-gray-700 h-2 rounded-full" style={{ width: `${(event.availableSeats / event.totalSeats) * 100}%` }}></div>
+                                        <div className="bg-gradient-to-r from-green-500 to-emerald-600 h-2 rounded-full" style={{ width: `${(event.availableSeats / event.totalSeats) * 100}%` }}></div>
                                     </div>
                                     <p className="text-xs text-gray-500 mb-4">{event.availableSeats} of {event.totalSeats} seats remaining</p>
-                                    <Link to={`/event/${event._id}`} className="block w-full text-center bg-gray-100 hover:bg-gray-200 text-gray-900 font-semibold py-2 rounded-lg transition">
+                                    <Link to={`/event/${event._id}`}className="block w-full text-center bg-gradient-to-r from-gray-900 to-black hover:from-black hover:to-gray-800 text-white font-semibold py-3 rounded-xl transition-all duration-300 shadow-lg">
                                         View Details
                                     </Link>
                                 </div>

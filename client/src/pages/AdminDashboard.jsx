@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import api from '../utils/axios';
 import { useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
 
 const AdminDashboard = () => {
     const { user } = useContext(AuthContext);
@@ -54,7 +55,7 @@ const AdminDashboard = () => {
             fetchData();
         }
         catch (error) {
-            alert(error.response?.data?.message || 'Error creating event');
+           toast.error(error.response?.data?.message || 'Error creating event');
         }
     //     catch (error) {
     // console.log(error.response);
@@ -69,7 +70,7 @@ const AdminDashboard = () => {
                 await api.delete(`/event/${id}`);
                 fetchData();
             } catch (error) {
-                alert('Error deleting event');
+              toast.error('Error deleting event');
             }
         }
     };
@@ -79,7 +80,7 @@ const AdminDashboard = () => {
             await api.put(`/booking/${id}/confirm`, { paymentStatus });
             fetchData();
         } catch (error) {
-            alert(error.response?.data?.message || 'Error confirming booking');
+           toast.error(error.response?.data?.message || 'Error confirming booking');
         }
     };
 
@@ -89,7 +90,7 @@ const AdminDashboard = () => {
                 await api.delete(`/booking/${id}`);
                 fetchData();
             } catch (error) {
-                alert(error.response?.data?.message || 'Error cancelling booking');
+              toast.error(error.response?.data?.message || 'Error cancelling booking');
             }
         }
     };
