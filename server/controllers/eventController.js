@@ -24,13 +24,13 @@ exports.getEventById = async (req, res) => {
 };
 
 exports.createEvent = async (req, res) => {
- console.log("🔥 CREATE EVENT CONTROLLER RUNNING 🔥");
+    console.log("🔥 CREATE EVENT CONTROLLER RUNNING 🔥");
     console.log('createEvent req.user:', req.user);
 
 
     try {
 
-        console.log("Req Body",req.body);
+        console.log("Req Body", req.body);
 
         const { title, description, date, location, category, totalSeats, ticketPrice, imageUrl } = req.body;
 

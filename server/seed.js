@@ -19,15 +19,15 @@ const users = [
     { name: 'George Miller', email: 'george@eventora.com', password: 'password123', role: 'user' },
     { name: 'Hannah Montana', email: 'hannah@eventora.com', password: 'password123', role: 'user' },
     { name: 'Ian Walker', email: 'ian@eventora.com', password: 'password123', role: 'user' },
-  { name: 'Jack Ryan', email: 'jack@eventora.com', password: 'password123', role: 'user' },
-  { name: 'Kevin Hart', email: 'kevin@eventora.com', password: 'password123', role: 'user' },
-  { name: 'Laura White', email: 'laura@eventora.com', password: 'password123', role: 'user' },
-  { name: 'Michael Scott', email: 'michael@eventora.com', password: 'password123', role: 'user' },
-  { name: 'Nancy Drew', email: 'nancy@eventora.com', password: 'password123', role: 'user' },
-  { name: 'Oliver Queen', email: 'oliver@eventora.com', password: 'password123', role: 'user' },
-  { name: 'Peter Parker', email: 'peter@eventora.com', password: 'password123', role: 'user' },
-  { name: 'Rachel Green', email: 'rachel@eventora.com', password: 'password123', role: 'user' },
-  { name: 'Tony Stark', email: 'tony@eventora.com', password: 'password123', role: 'user' }
+    { name: 'Jack Ryan', email: 'jack@eventora.com', password: 'password123', role: 'user' },
+    { name: 'Kevin Hart', email: 'kevin@eventora.com', password: 'password123', role: 'user' },
+    { name: 'Laura White', email: 'laura@eventora.com', password: 'password123', role: 'user' },
+    { name: 'Michael Scott', email: 'michael@eventora.com', password: 'password123', role: 'user' },
+    { name: 'Nancy Drew', email: 'nancy@eventora.com', password: 'password123', role: 'user' },
+    { name: 'Oliver Queen', email: 'oliver@eventora.com', password: 'password123', role: 'user' },
+    { name: 'Peter Parker', email: 'peter@eventora.com', password: 'password123', role: 'user' },
+    { name: 'Rachel Green', email: 'rachel@eventora.com', password: 'password123', role: 'user' },
+    { name: 'Tony Stark', email: 'tony@eventora.com', password: 'password123', role: 'user' }
 ];
 
 const events = [
@@ -92,55 +92,55 @@ const events = [
         imageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800'
     },
     {
-    title: 'AI & Machine Learning Summit',
-    description: 'Explore the latest advancements in artificial intelligence, machine learning models, and real-world enterprise AI applications.',
-    date: new Date(Date.now() + 18 * 24 * 60 * 60 * 1000),
-    location: 'Innovation Center, San Francisco',
-    category: 'Technology',
-    totalSeats: 250,
-    ticketPrice: 1200,
-    imageUrl: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800'
-},
-{
-    title: 'Cyber Security & Ethical Hacking Workshop',
-    description: 'Learn modern cyber defense techniques, penetration testing, vulnerability assessment, and ethical hacking practices.',
-    date: new Date(Date.now() + 22 * 24 * 60 * 60 * 1000),
-    location: 'Security Hub, Austin',
-    category: 'Technology',
-    totalSeats: 180,
-    ticketPrice: 900,
-    imageUrl: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800'
-},
-{
-    title: 'Data Science & Analytics Conference',
-    description: 'Discover data-driven decision making, predictive analytics, visualization techniques, and big data technologies.',
-    date: new Date(Date.now() + 25 * 24 * 60 * 60 * 1000),
-    location: 'Convention Center, Chicago',
-    category: 'Technology',
-    totalSeats: 300,
-    ticketPrice: 1500,
-    imageUrl: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800'
-},
-{
-    title: 'DevOps & Kubernetes Masterclass',
-    description: 'Master CI/CD pipelines, containerization, Kubernetes orchestration, monitoring, and scalable deployments.',
-    date: new Date(Date.now() + 28 * 24 * 60 * 60 * 1000),
-    location: 'Tech Valley, Denver',
-    category: 'Technology',
-    totalSeats: 150,
-    ticketPrice: 1100,
-    imageUrl: 'https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?auto=format&fit=crop&q=80&w=800'
-},
-{
-    title: 'Full Stack JavaScript Developer Conference',
-    description: 'A complete journey through modern frontend and backend development using React, Node.js, Express, and MongoDB.',
-    date: new Date(Date.now() + 35 * 24 * 60 * 60 * 1000),
-    location: 'Developer Arena, Bangalore',
-    category: 'Technology',
-    totalSeats: 220,
-    ticketPrice: 800,
-    imageUrl: 'https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&q=80&w=800'
-}
+        title: 'AI & Machine Learning Summit',
+        description: 'Explore the latest advancements in artificial intelligence, machine learning models, and real-world enterprise AI applications.',
+        date: new Date(Date.now() + 18 * 24 * 60 * 60 * 1000),
+        location: 'Innovation Center, San Francisco',
+        category: 'Technology',
+        totalSeats: 250,
+        ticketPrice: 1200,
+        imageUrl: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800'
+    },
+    {
+        title: 'Cyber Security & Ethical Hacking Workshop',
+        description: 'Learn modern cyber defense techniques, penetration testing, vulnerability assessment, and ethical hacking practices.',
+        date: new Date(Date.now() + 22 * 24 * 60 * 60 * 1000),
+        location: 'Security Hub, Austin',
+        category: 'Technology',
+        totalSeats: 180,
+        ticketPrice: 900,
+        imageUrl: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800'
+    },
+    {
+        title: 'Data Science & Analytics Conference',
+        description: 'Discover data-driven decision making, predictive analytics, visualization techniques, and big data technologies.',
+        date: new Date(Date.now() + 25 * 24 * 60 * 60 * 1000),
+        location: 'Convention Center, Chicago',
+        category: 'Technology',
+        totalSeats: 300,
+        ticketPrice: 1500,
+        imageUrl: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800'
+    },
+    {
+        title: 'DevOps & Kubernetes Masterclass',
+        description: 'Master CI/CD pipelines, containerization, Kubernetes orchestration, monitoring, and scalable deployments.',
+        date: new Date(Date.now() + 28 * 24 * 60 * 60 * 1000),
+        location: 'Tech Valley, Denver',
+        category: 'Technology',
+        totalSeats: 150,
+        ticketPrice: 1100,
+        imageUrl: 'https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?auto=format&fit=crop&q=80&w=800'
+    },
+    {
+        title: 'Full Stack JavaScript Developer Conference',
+        description: 'A complete journey through modern frontend and backend development using React, Node.js, Express, and MongoDB.',
+        date: new Date(Date.now() + 35 * 24 * 60 * 60 * 1000),
+        location: 'Developer Arena, Bangalore',
+        category: 'Technology',
+        totalSeats: 220,
+        ticketPrice: 800,
+        imageUrl: 'https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&q=80&w=800'
+    }
 ];
 
 const seedDatabase = async () => {

@@ -147,5 +147,5 @@ exports.verifyOTP = async (req, res) => {
             message: 'Server Error',
             error: error.message
         });
-    } 
+    }
 };

@@ -5,10 +5,10 @@ import { FaCalendarAlt, FaMapMarkerAlt, FaSearch, FaRegClock, FaTicketAlt, FaShi
 
 const Home = () => {
     const [events, setEvents] = useState([]);
-const [search, setSearch] = useState('');
-const [category, setCategory] = useState('');
-const [categories, setCategories] = useState([]);
-const [loading, setLoading] = useState(true);
+    const [search, setSearch] = useState('');
+    const [category, setCategory] = useState('');
+    const [categories, setCategories] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
@@ -19,12 +19,12 @@ const [loading, setLoading] = useState(true);
 
     const fetchEvents = async () => {
         try {
-           const { data } = await api.get(
-    `/event?search=${search}&category=${category}`
-);
+            const { data } = await api.get(
+                `/event?search=${search}&category=${category}`
+            );
             setEvents(data);
-    const uniqueCategories = [...new Set(data.map(event => event.category))];
-setCategories(uniqueCategories);  
+            const uniqueCategories = [...new Set(data.map(event => event.category))];
+            setCategories(uniqueCategories);
 
 
         } catch (error) {
@@ -60,23 +60,23 @@ setCategories(uniqueCategories);
                         />
                     </div>
                     <div className="mt-6 w-full max-w-sm">
-    <select
-    value={category}
-    onChange={(e) => setCategory(e.target.value)}
-    className="w-full bg-white text-gray-800 rounded-xl px-4 py-3 border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-black"
->
-    <option value="">All Categories</option>
+                        <select
+                            value={category}
+                            onChange={(e) => setCategory(e.target.value)}
+                            className="w-full bg-white text-gray-800 rounded-xl px-4 py-3 border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-black"
+                        >
+                            <option value="">All Categories</option>
 
-    {categories.map((cat) => (
-        <option key={cat} value={cat}>
-            {cat}
-        </option>
-    ))}
-</select>
+                            {categories.map((cat) => (
+                                <option key={cat} value={cat}>
+                                    {cat}
+                                </option>
+                            ))}
+                        </select>
 
 
 
-  </div>
+                    </div>
                 </div>
             </div>
 
@@ -117,23 +117,23 @@ setCategories(uniqueCategories);
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {events.map(event => (
-                      <div
-    key={event._id}
-    className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col border border-gray-100"
->
+                        <div
+                            key={event._id}
+                            className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col border border-gray-100"
+                        >
                             <div className="h-48 bg-gray-200 overflow-hidden relative">
                                 {event.imageUrl ? (
-  <img
-    src={event.imageUrl}
-    alt={event.title}
-    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-  />
-) : (
+                                    <img
+                                        src={event.imageUrl}
+                                        alt={event.title}
+                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    />
+                                ) : (
                                     <span className="inline-block bg-gray-100 text-gray-700 text-xs font-semibold px-3 py-1 rounded-full mb-3 w-fit">
-    {event.category}
-</span>
+                                        {event.category}
+                                    </span>
                                 )}
-                               <div className="absolute top-4 right-4 bg-black text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+                                <div className="absolute top-4 right-4 bg-black text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
                                     {event.ticketPrice === 0 ? <span className="text-green-600">FREE</span> : <span className="text-gray-900">₹{event.ticketPrice}</span>}
                                 </div>
                             </div>
@@ -155,7 +155,7 @@ setCategories(uniqueCategories);
                                         <div className="bg-gradient-to-r from-green-500 to-emerald-600 h-2 rounded-full" style={{ width: `${(event.availableSeats / event.totalSeats) * 100}%` }}></div>
                                     </div>
                                     <p className="text-xs text-gray-500 mb-4">{event.availableSeats} of {event.totalSeats} seats remaining</p>
-                                    <Link to={`/event/${event._id}`}className="block w-full text-center bg-gradient-to-r from-gray-900 to-black hover:from-black hover:to-gray-800 text-white font-semibold py-3 rounded-xl transition-all duration-300 shadow-lg">
+                                    <Link to={`/event/${event._id}`} className="block w-full text-center bg-gradient-to-r from-gray-900 to-black hover:from-black hover:to-gray-800 text-white font-semibold py-3 rounded-xl transition-all duration-300 shadow-lg">
                                         View Details
                                     </Link>
                                 </div>

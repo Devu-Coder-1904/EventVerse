@@ -79,11 +79,11 @@ exports.confirmBooking = async (req, res) => {
         await event.save();
 
         // Send email on admin confirmation
-       await sendBookingEmail(
-    booking.userId.email,
-    booking.userId.name,
-    booking
-);
+        await sendBookingEmail(
+            booking.userId.email,
+            booking.userId.name,
+            booking
+        );
         res.json({ message: 'Booking confirmed successfully', booking });
     } catch (error) {
         res.status(500).json({ message: 'Server Error', error: error.message });

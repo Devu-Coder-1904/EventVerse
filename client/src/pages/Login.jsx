@@ -89,7 +89,7 @@ const Login = () => {
                 <button
                     type="submit"
                     disabled={loading}
-className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold py-3 rounded-lg hover:scale-105 transition shadow-md">                    {loading ? 'Processing...' : (showOTP ? 'Verify OTP & Log In' : 'Sign In')}
+                    className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold py-3 rounded-lg hover:scale-105 transition shadow-md">                    {loading ? 'Processing...' : (showOTP ? 'Verify OTP & Log In' : 'Sign In')}
                 </button>
             </form>
 

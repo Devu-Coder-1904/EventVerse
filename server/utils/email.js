@@ -3,11 +3,11 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const transporter = nodemailer.createTransport({
-  service: 'Gmail',
-  auth: {   
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
+    service: 'Gmail',
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+    },
 });
 const sendBookingEmail = async (email, name, booking) => {
     try {
@@ -59,15 +59,15 @@ const sendBookingEmail = async (email, name, booking) => {
 
 const sendOtpEmail = async (email, otp, type) => {
     try {
-         
+
         const title = type === 'account_verification' ? 'Account Verification' : 'Event Booking';
         const msg = type === 'account_verification' ? 'Please use the following OTP to verify your account.' : 'Please use the following OTP to complete your event booking.';
 
-const mailOptions = {
-from: process.env.EMAIL_USER,
-to: email,
-subject: title,
-html: ` <div style="font-family:Arial,sans-serif;max-width:500px;margin:auto;padding:20px;border:1px solid #ddd;border-radius:10px"> <h2 style="text-align:center;color:#2563eb;">🎉 Eventora</h2>
+        const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: email,
+            subject: title,
+            html: ` <div style="font-family:Arial,sans-serif;max-width:500px;margin:auto;padding:20px;border:1px solid #ddd;border-radius:10px"> <h2 style="text-align:center;color:#2563eb;">🎉 Eventora</h2>
 
 
   <p>Hello,</p>
@@ -88,11 +88,11 @@ html: ` <div style="font-family:Arial,sans-serif;max-width:500px;margin:auto;pad
   </p>
 </div>
 `,
-};
+        };
 
         await transporter.sendMail(mailOptions);
         console.log(`OTP email sent to ${email} for ${type}`);
-    }   
+    }
     catch (error) {
         console.error(`Error sending OTP email to ${email}:`, error);
     }

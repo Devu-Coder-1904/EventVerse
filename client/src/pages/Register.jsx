@@ -98,7 +98,7 @@ const Register = () => {
                 <button
                     type="submit"
                     disabled={loading}
-className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold py-3 rounded-lg hover:scale-105 transition shadow-md mt-4">                    {loading ? 'Processing...' : (showOTP ? 'Verify & Complete' : 'Sign Up')}
+                    className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold py-3 rounded-lg hover:scale-105 transition shadow-md mt-4">                    {loading ? 'Processing...' : (showOTP ? 'Verify & Complete' : 'Sign Up')}
                 </button>
             </form>
 

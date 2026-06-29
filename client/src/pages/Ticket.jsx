@@ -24,12 +24,12 @@ const Ticket = () => {
         if (!ticket) return;
 
         const canvas = await html2canvas(ticket, {
-    scale: 2,
-    useCORS: true,
-    ignoreElements: (element) => {
-        return element.tagName === 'BUTTON';
-    }
-});
+            scale: 2,
+            useCORS: true,
+            ignoreElements: (element) => {
+                return element.tagName === 'BUTTON';
+            }
+        });
 
         const imgData = canvas.toDataURL('image/png');
 

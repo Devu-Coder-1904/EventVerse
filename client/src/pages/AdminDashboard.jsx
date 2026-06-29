@@ -13,15 +13,15 @@ const AdminDashboard = () => {
 
     const [showEventForm, setShowEventForm] = useState(false);
     const [formData, setFormData] = useState({
-  title: '',
-  description: '',
-  date: '',
-  location: '',
-  category: '',
-  totalSeats: '',
-  ticketPrice: '',
-  imageUrl: ''
-});
+        title: '',
+        description: '',
+        date: '',
+        location: '',
+        category: '',
+        totalSeats: '',
+        ticketPrice: '',
+        imageUrl: ''
+    });
 
     useEffect(() => {
         if (!user || user.role !== 'admin') {
@@ -55,14 +55,14 @@ const AdminDashboard = () => {
             fetchData();
         }
         catch (error) {
-           toast.error(error.response?.data?.message || 'Error creating event');
+            toast.error(error.response?.data?.message || 'Error creating event');
         }
-    //     catch (error) {
-    // console.log(error.response);
-    // console.log(error.response?.data);
-    // alert(JSON.stringify(error.response?.data));
-};
-    
+        //     catch (error) {
+        // console.log(error.response);
+        // console.log(error.response?.data);
+        // alert(JSON.stringify(error.response?.data));
+    };
+
 
     const handleDeleteEvent = async (id) => {
         if (window.confirm('Are you sure you want to delete this event?')) {
@@ -70,7 +70,7 @@ const AdminDashboard = () => {
                 await api.delete(`/event/${id}`);
                 fetchData();
             } catch (error) {
-              toast.error('Error deleting event');
+                toast.error('Error deleting event');
             }
         }
     };
@@ -80,7 +80,7 @@ const AdminDashboard = () => {
             await api.put(`/booking/${id}/confirm`, { paymentStatus });
             fetchData();
         } catch (error) {
-           toast.error(error.response?.data?.message || 'Error confirming booking');
+            toast.error(error.response?.data?.message || 'Error confirming booking');
         }
     };
 
@@ -90,7 +90,7 @@ const AdminDashboard = () => {
                 await api.delete(`/booking/${id}`);
                 fetchData();
             } catch (error) {
-              toast.error(error.response?.data?.message || 'Error cancelling booking');
+                toast.error(error.response?.data?.message || 'Error cancelling booking');
             }
         }
     };
